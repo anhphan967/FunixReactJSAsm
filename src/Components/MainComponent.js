@@ -5,6 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Departments from './DeparmentsComponent'
 import Salaries from './SalariesComponent'
+import Staff from './Staff';
 
 // container component
 function MainComponent() {
@@ -16,9 +17,14 @@ function MainComponent() {
         <div >
             <Header />
             <Routes>
-                <Route 
-                    path="/" 
+                <Route
+                    path="/"
                     element={<Navigate replace to="/staff" />} />
+                <Route
+                    path='/staff'
+                    element={<Staff />}
+
+                />
                 <Route
                     path='/deparment'
                     element={<Departments />}
