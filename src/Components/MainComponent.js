@@ -6,7 +6,7 @@ import Footer from './FooterComponent'
 import Departments from './DeparmentsComponent'
 import Salaries from './SalariesComponent'
 import Staff from './Staff';
-
+import StaffSelect from './StaffSelectComponent'
 // container component
 function MainComponent() {
     const [select, setSelect] = useState(null)
