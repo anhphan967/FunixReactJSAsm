@@ -1,7 +1,7 @@
 import { STAFFS } from '../Shared/Staffs'
 import dateFormat from "dateformat";
 import { useParams, Link } from "react-router-dom";
-import Breadcrumb from 'reactstrap'
+import {Breadcrumb, BreadcrumbItem} from 'reactstrap'
 
 function StaffSelect() {
   let { id } = useParams()
@@ -11,8 +11,8 @@ function StaffSelect() {
     <div className='container'>
       <div className='row'>
         <Breadcrumb>
-          <Breadcrumb.Item ><Link to='/'>Nhân viên</Link></Breadcrumb.Item>
-          <Breadcrumb.Item active>{selectData[0].name}</Breadcrumb.Item>
+          <BreadcrumbItem ><Link to='/'>Nhân viên</Link></BreadcrumbItem>
+          <BreadcrumbItem active>{selectData[0].name}</BreadcrumbItem>
         </Breadcrumb>
         <img className='col-lg-3 col-md-4 col-xs-12 m-2 p-2' src={selectData[0].image} />
         <div className='col-lg-8 col-md-7 col-xs-12 m-2 p-2' >

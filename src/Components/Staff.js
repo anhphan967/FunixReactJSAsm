@@ -1,4 +1,4 @@
-import { Card, Form } from 'reactstrap'
+import { Card, Form } from 'react-bootstrap'
 import { STAFFS } from '../Shared/Staffs'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'

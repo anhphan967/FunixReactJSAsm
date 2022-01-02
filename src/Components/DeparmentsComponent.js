@@ -1,4 +1,4 @@
-import { Card } from 'reactstrap';
+import { Card } from 'react-bootstrap';
 import { DEPARTMENTS } from '../Shared/Staffs'
 
 // UI Componet

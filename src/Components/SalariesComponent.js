@@ -1,4 +1,5 @@
-import { Card, Form, Breadcrumb } from 'reactstrap'
+import { Card,Form } from 'react-bootstrap'
+import { Breadcrumb,BreadcrumbItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { STAFFS } from '../Shared/Staffs'
 import { useState } from 'react'
@@ -24,8 +25,8 @@ function Salaries() {
     <div className='container'>
       <div className='row'>
         <Breadcrumb className='col-lg-3 col-md-4 col-xs-6'>
-          <Breadcrumb.Item ><Link to='/'>Nhân viên</Link></Breadcrumb.Item>
-          <Breadcrumb.Item active>Bảng lương</Breadcrumb.Item>
+          <BreadcrumbItem ><Link to='/'>Nhân viên</Link></BreadcrumbItem>
+          <BreadcrumbItem active>Bảng lương</BreadcrumbItem>
         </Breadcrumb>
         <div className='col-lg-3 col-md-4 col-xs-6'>
           <Form.Select onChange={(e) => setSort(e.target.value)} >

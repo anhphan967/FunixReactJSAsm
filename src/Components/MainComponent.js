@@ -1,6 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-
-import { useState } from "react"
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Departments from './DeparmentsComponent'
@@ -9,10 +7,7 @@ import Staff from './Staff';
 import StaffSelect from './StaffSelectComponent'
 // container component
 function MainComponent() {
-    const [select, setSelect] = useState(null)
-    const dishSelect = data => {
-        setSelect(data)
-    }
+   
     return (
         <div >
             <Header />
