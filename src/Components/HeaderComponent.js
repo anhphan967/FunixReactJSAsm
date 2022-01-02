@@ -12,7 +12,7 @@ function Header() {
                <div className="container">
                    <div className="row">
                        <NavbarToggler onClick={() => setToggle(!toggle)} />
-                       <NavbarBrand className="mr-auto" href="/home"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
+                       <NavbarBrand className="mr-auto" href="/staffs"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
                        <Collapse isOpen={toggle} navbar>
                            <Nav navbar>
                                <NavItem>

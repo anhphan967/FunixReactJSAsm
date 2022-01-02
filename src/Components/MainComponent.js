@@ -14,7 +14,7 @@ function MainComponent() {
             <Routes>
                 <Route
                     path="/"
-                    element={<Navigate replace to="/staff" />} />
+                    element={<Navigate replace to="/staffs" />} />
                 <Route
                     path='/staffs'
                     element={<Staff />}

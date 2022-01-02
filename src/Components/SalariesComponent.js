@@ -12,7 +12,7 @@ function Salaries() {
     const overTimeSalary = 200000;
     const salary = (parseFloat(data.salaryScale) * basicSalary) + (parseFloat(data.overTime) * overTimeSalary);
     return (
-      <Card key={data.id} className={'col-12 col-md-6 col-lg-4 mt-2 mb-2'}>
+      <Card key={data.id} className={'col-12 col-md-6 col-lg-4 mt-2 mb-2 '}>
         <h3>{data.name}</h3>
         <p> Mã nhân viên:{data.id}</p>
         <p>Hệ số lương: {data.salaryScale}</p>
@@ -25,10 +25,10 @@ function Salaries() {
     <div className='container'>
       <div className='row'>
         <Breadcrumb className='col-lg-3 col-md-4 col-xs-6'>
-          <BreadcrumbItem ><Link to='/'>Nhân viên</Link></BreadcrumbItem>
+          <BreadcrumbItem ><Link to='/staffs'>Nhân viên</Link></BreadcrumbItem>
           <BreadcrumbItem active>Bảng lương</BreadcrumbItem>
         </Breadcrumb>
-        <div className='col-lg-3 col-md-4 col-xs-6'>
+        <div className='col-lg-3 col-md-4 col-xs-6 p-2'>
           <Form.Select onChange={(e) => setSort(e.target.value)} >
             <option value={true}>MSNV tăng dần</option>
             <option value={false} >MSNV giảm dần</option>

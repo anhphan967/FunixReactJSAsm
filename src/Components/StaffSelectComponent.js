@@ -11,9 +11,11 @@ function StaffSelect() {
     <div className='container'>
       <div className='row'>
         <Breadcrumb>
-          <BreadcrumbItem ><Link to='/'>Nhân viên</Link></BreadcrumbItem>
+          <BreadcrumbItem ><Link to='/staffs'>Nhân viên</Link></BreadcrumbItem>
           <BreadcrumbItem active>{selectData[0].name}</BreadcrumbItem>
         </Breadcrumb>
+      </div>
+      <div className='row'> 
         <img className='col-lg-3 col-md-4 col-xs-12 m-2 p-2' src={selectData[0].image} />
         <div className='col-lg-8 col-md-7 col-xs-12 m-2 p-2' >
           <h3> Họ và tên :{selectData[0].name} </h3>
