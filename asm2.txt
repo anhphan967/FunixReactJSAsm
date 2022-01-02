@@ -1,0 +1,4 @@
+Tên học sinh: Phan Anh Tuấn
+Mssv:	FX13361
+Email:https:tuanpafx13361@funix.edu.vn
+Link bài asm2:https://github.com/anhphan967/FunixReactJSAsm/tree/RJS101x_Assignment2_tuanpafx13361%40funix.edu.vn
