@@ -1,5 +1,5 @@
 import { Card, Form } from 'react-bootstrap'
-import { STAFFS } from '../staffs.jsx'
+import { STAFFS } from '../Shared/Staffs'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
