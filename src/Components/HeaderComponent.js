@@ -16,17 +16,14 @@ function Header() {
                        <Collapse isOpen={toggle} navbar>
                            <Nav navbar>
                                <NavItem>
-                                   <NavLink tag={Link} to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                                   <NavLink tag={Link} to='/staffs'><span className="fa fa-users fa-lg"></span> Nhân viên</NavLink>
                                </NavItem>
                                <NavItem>
-                                   <NavLink tag={Link} to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                                   <NavLink tag={Link} to='/deparments'><span className="fa fa-id-card-o fa-lg"></span> Phòng Ban</NavLink>
                                </NavItem>
                                <NavItem>
-                                   <NavLink tag={Link} to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
-                               </NavItem>
-                               <NavItem>
-                                   <NavLink tag={Link} to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
-                               </NavItem>
+                                   <NavLink tag={Link} to='/salaries'><span className="fa fa-money fa-lg"></span> Bảng Lương</NavLink>
+                               </NavItem>                               
                            </Nav>
                        </Collapse>
                    </div>

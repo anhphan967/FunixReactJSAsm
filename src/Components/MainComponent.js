@@ -16,12 +16,12 @@ function MainComponent() {
                     path="/"
                     element={<Navigate replace to="/staff" />} />
                 <Route
-                    path='/staff'
+                    path='/staffs'
                     element={<Staff />}
 
                 />
                 <Route
-                    path='/deparment'
+                    path='/deparments'
                     element={<Departments />}
                 />
                 <Route
