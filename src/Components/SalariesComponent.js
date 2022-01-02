@@ -1,5 +1,5 @@
 import { Card, Form, Breadcrumb } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link } from 'reactstrap'
 import { STAFFS } from '../Shared/Staffs'
 import { useState } from 'react'
 
