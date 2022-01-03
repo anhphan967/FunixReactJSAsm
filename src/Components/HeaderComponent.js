@@ -11,7 +11,8 @@ function Header() {
     return (
         <div>           
             <Navbar dark expand="md">
-                <NavbarToggler onClick={() => setToggle(!toggle)} />
+                <div className='container'>
+                    <NavbarToggler onClick={() => setToggle(!toggle)} />
                 <NavbarBrand><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
                 <Collapse isOpen={toggle} navbar>
                     <Nav navbar>
@@ -29,6 +30,7 @@ function Header() {
                         </NavItem>
                     </Nav>
                 </Collapse>
+                </div>                
             </Navbar>            
             <div className='Jumbotron'>
                 <div className="container">

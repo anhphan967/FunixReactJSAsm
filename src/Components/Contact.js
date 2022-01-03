@@ -1,31 +1,61 @@
 import {
     Breadcrumb, BreadcrumbItem,
-    Button, Form, FormGroup, Label, Input, Col
+    Button, Form, FormGroup, Label, Input, Col, FormFeedback
 } from 'reactstrap';
 import { useState, } from 'react';
 import { Link } from 'react-router-dom'
 
 function Contact() {
+    const initValue = { firstname: '', lastname: '', tel: '', email: '', agree: false, contactType: 'Tel', messenger: '' }
+    const [formValues, setFormValues] = useState(initValue)
+    const HandelChange = (e) => {
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLasttName] = useState('')
-    const [tel, setTel] = useState('')
-    const [email, setEmail] = useState('')
-    const [agree, setAgree] = useState(false)
-    const [select, setSelect] = useState('tel')
-    const [messenger, setMessenger] = useState('')
-  
+        const { name, value, checked } = e.target
+        setFormValues(() => {
+            if (e.target.type === 'checkbox') {
+                return ({ ...formValues, [name]: checked })
+            } else {
+                return ({ ...formValues, [name]: value })
+            }
+        })
 
-    const HandelSubmit = () => {
-        const datas = { firstName, lastName, tel, email, select, messenger, agree }
-       alert( JSON.stringify(datas))
-        setFirstName('')
-        setLasttName('')
-        setEmail('')
-        setTel('')
-        setMessenger('')
-        
     }
+    const HandelSubmit = (event) => {
+        const data=JSON.stringify(formValues)
+        alert('Feedback :'+ data)
+        event.preventDefault();
+
+    }
+
+    // const errors = {
+    //     firstname: '',
+    //     lastname: '',
+    //     tel: '',
+    //     email: ''
+    // };
+
+    // console.log(type)
+    // if (type === 'firstName' && firstName.length <= 3) {
+    //     errors.firstname = 'First Name should be >=3 characters'
+    // }else if (type === 'firstName' && firstName.length >10){
+    //     errors.firstname = 'First Name should be <= 10 characters'
+    // }
+    // if (type === 'lastname' && lastName.length <= 3) {
+    //     errors.lastname = 'Last Name should be >=3 characters'
+    // }else if (type === 'lastname' && lastName.length >10){
+    //     errors.lastname = 'Last Name should be <= 10 characters'
+    // }
+    // // const reg=  /^\d+$/;
+    // // if (type === 'tel' && !reg.test(tel)) {
+    // //     errors.tel = 'Tel. Number should contain only numbers'
+    // // }
+    // // const regEmail=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+
+    // // if (type === 'email' && regEmail.test(email) ) {
+    // //     errors.firstname = 'Email should contain a @'
+    // // }
+
+
 
     return (
         <div className="container">
@@ -69,14 +99,19 @@ function Contact() {
                 <div className="col-12">
                     <h3> Send us Your Feedback</h3>
                 </div>
-                <Form className="col-12 col-md-9" >
+                <Form className="col-12 col-md-9" onSubmit={HandelSubmit}>
                     <FormGroup row >
                         <Label htmlFor='firstname' md={2}>Firsit Name</Label>
                         <Col md={10}>
                             <Input
-                                type='text' name='firstname' value={firstName}
-                                onChange={e => setFirstName(e.target.value)}
-                            ></Input>
+                                type='text' name='firstname' value={formValues.firstname}
+                                onChange={HandelChange}
+                                placeholder="First Name"
+                            // onBlur={(() => setType('firstName'))}
+                            // valid={errors.firstname === ''}
+                            // invalid={errors.firstname !== ''}
+                            />
+                            <FormFeedback></FormFeedback>
                         </Col>
 
                     </FormGroup>
@@ -84,7 +119,11 @@ function Contact() {
                         <Label htmlFor='lastname' md={2}>Last Name</Label>
                         <Col md={10}>
                             <Input type='text' name='lastname'
-                                value={lastName} onChange={e => setLasttName(e.target.value)}
+                                value={formValues.lastname} onChange={HandelChange}
+                                placeholder="Last Name"
+                            // onBlur={(() => setType('lastname'))}
+                            // valid={errors.lastname === ''}
+                            // invalid={errors.lastname !== ''}
                             />
                         </Col>
                     </FormGroup>
@@ -92,7 +131,11 @@ function Contact() {
                         <Label htmlFor='tel' md={2}>Contact Tel.</Label>
                         <Col md={10}>
                             <Input type='text' name='tel'
-                                value={tel} onChange={e => setTel(e.target.value)}
+                                value={formValues.tel} onChange={HandelChange}
+                                placeholder="Telephone Number"
+                            // onBlur={(() => setType('tel'))}
+                            // valid={errors.tel === ''}
+                            // invalid={errors.tel !== ''}
                             />
                         </Col>
                     </FormGroup>
@@ -100,26 +143,27 @@ function Contact() {
                         <Label htmlFor='email' md={2}>Email</Label>
                         <Col md={10}>
                             <Input type='text' name='email'
-                                value={email} onChange={e => setEmail(e.target.value)}
+                                value={formValues.email} onChange={HandelChange} placeholder="Your Email"
+                            // onBlur={(() => setType('email'))}
+                            // valid={errors.email === ''}
+                            // invalid={errors.email !== ''}
                             />
                         </Col>
                     </FormGroup>
                     <FormGroup>
-                        <Col md={{size: 6, offset: 2}}>
+                        <Col md={{ size: 6, offset: 2 }}>
                             <FormGroup check>
                                 <Label check>
                                     <Input type="checkbox"
-                                        name="agree" checked={agree}
-                                        onChange={e => setAgree(e.target.checked)}
-                                    ></Input>
+                                        name="agree" checked={formValues.agree}
+                                        onChange={HandelChange} value={formValues.agree} />
                                     <strong>May we contact you?</strong>
                                 </Label>
                             </FormGroup>
                         </Col>
-                        <Col  md={{size: 6, offset: 2}}>
+                        <Col md={{ size: 6, offset: 2 }}>
                             <Input type="select" name="contactType"
-                                onChange={e => setSelect(e.target.value)}
-                            >
+                                onChange={HandelChange} value={formValues.contactType} >
                                 <option value='tel' >Tel.</option>
                                 <option value='email '>Email</option>
                             </Input>
@@ -129,13 +173,13 @@ function Contact() {
                         <Label htmlFor='messenger' md={2}>Your Feedback </Label>
                         <Col md={10}>
                             <Input type='textarea' name='messenger'
-                                value={messenger} onChange={e => setMessenger(e.target.value)}
+                                value={formValues.messenger} onChange={HandelChange}
                             />
                         </Col>
                     </FormGroup>
                     <FormGroup>
                         <Col md={{ size: 10, offset: 2 }}>
-                            <Button onClick={HandelSubmit}> Send Your Feedback </Button>
+                            <Button type='submit'> Send Your Feedback </Button>
                         </Col>
                     </FormGroup>
 
