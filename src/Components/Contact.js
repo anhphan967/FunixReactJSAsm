@@ -64,7 +64,7 @@ function Contact() {
 
         if (blur.firstName && values.firstName.length <= 3) {
             errors.firstName = 'Last Name should be >= 3 characters'
-        } else if (values.firstNamelength > 10) {
+        } else if (values.firstName.length > 10) {
             errors.firstName = 'Last Name should be <10 characters'
         }
         if (blur.lastName && values.lastName.length <= 3) {
