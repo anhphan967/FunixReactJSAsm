@@ -1,5 +1,5 @@
 import { baseUrl } from "../Shared/baseUrl"
-import * as ActionTypes  from './ActionTypes';
+import * as ActionTypes from './ActionTypes';
 
 // staff 
 export const fetchStaffs = (dispatch) => {
@@ -19,30 +19,30 @@ export const fetchStaffs = (dispatch) => {
                 throw errMess
             })
         .then(response => response.json())
-        .then(staffs=>dispatch(staffsAdd(staffs)))
+        .then(staffs => dispatch(staffsAdd(staffs)))
         .catch(error => dispatch(staffsFailed(error.message)))
 }
-export const isLoadingStaffs=()=>({
+export const isLoadingStaffs = () => ({
     type: ActionTypes.STAFFS_LOADING
 })
-export const staffsAdd=staffs=>({
+export const staffsAdd = staffs => ({
     type: ActionTypes.STAFFS_ADD,
-    payload:staffs
+    payload: staffs
 })
-export const staffsFailed= error=>({
+export const staffsFailed = error => ({
     type: ActionTypes.STAFFS_FAILED,
     payload: error
 })
 //STAFFS_PLUS
-export const fetchPlus=(newStaff,dispatch)=>{ 
+export const fetchPlus = (newStaff, dispatch) => {
     console.log('fetchPlus')
     fetch(baseUrl + 'staffs', {
-        method:'Post',
-        body:JSON.stringify(newStaff),
+        method: 'POST',
+        body: JSON.stringify(newStaff),
         headers: {
             "Content-Type": "application/json",
-          },
-          credentials: "same-origin"
+        },
+        credentials: "same-origin"
     })
         .then(response => {
             if (response.ok) { return response }
@@ -57,16 +57,66 @@ export const fetchPlus=(newStaff,dispatch)=>{
                 throw errMess
             })
         .then(response => response.json())
-        .then(staff=>dispatch(staffPlus(staff)))
+        .then(staff => dispatch(staffPlus(staff)))
         .catch(error => {
             console.log('STAFF PLUS:', error.message);
-            alert('Thêm mới nhân viên không thành công\nError: ' + error.message);
+            alert('Thêm mới  nhân viên không thành công\nError: ' + error.message);
         })
 }
-    export const staffPlus=staff=>({
-        type: ActionTypes.STAFFS_PLUS,
-        payload: staff
+export const staffPlus = staff => ({
+    type: ActionTypes.STAFFS_PLUS,
+    payload: staff
+})
+// STAFFS_DELETE
+export const fetchDelete = (id, dispatch) => {
+    console.log('fetchDelete')    
+    fetch(baseUrl + `staffs/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "same-origin"
     })
+        .then(() => dispatch(staffDelete(id)))
+
+}
+export const staffDelete = id => ({
+    type: ActionTypes.STAFFS_DELETE,
+    payload: id
+})
+//update 
+export const fetchUpdate = (updateStaff,dispatch) => {
+    console.log('fetchUpdate')
+    fetch(baseUrl + 'staffs',{
+        method: 'PATCH',
+        body:JSON.stringify(updateStaff),
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "same-origin"
+    })
+        .then(response => {
+            if (response.ok) { return response }
+            else {
+                const error = new Error('Error:' + response.status + ':' + response.statusText)
+                error.response = response
+                throw error
+            }
+        },
+            error => {
+                const errMess = new Error(error.message)
+                throw errMess
+            })
+        .then(response => response.json())
+        .then(staff => dispatch(staffsUpdate(staff)))
+        .catch(error =>  {console.log('STAFF UPDATE:', error.message)
+        alert('Chỉnh sửa nhân viên không thành công\nError: ' + error.message)})
+}
+export const staffsUpdate = staff => ({
+    type: ActionTypes.STAFFS_UPDATE,
+    payload: staff
+})
+
 // deparmemts
 export const fetchDepartments = (dispatch) => {
     dispatch(isLoadingDepartments(true))
@@ -86,17 +136,17 @@ export const fetchDepartments = (dispatch) => {
                 throw errMess
             })
         .then(response => response.json())
-        .then(departments=>dispatch(DepartmentsAdd(departments)))
+        .then(departments => dispatch(DepartmentsAdd(departments)))
         .catch(error => dispatch(departmentsFailed(error.message)))
 }
-export const isLoadingDepartments=()=>({
+export const isLoadingDepartments = () => ({
     type: ActionTypes.DEPARTMENTS_LOADING
 })
-export const DepartmentsAdd=departments=>({
+export const DepartmentsAdd = departments => ({
     type: ActionTypes.DEPARTMENTS_ADD,
-    payload:departments
+    payload: departments
 })
-export const departmentsFailed= error=>({
+export const departmentsFailed = error => ({
     type: ActionTypes.DEPARTMENTS_FAILED,
     payload: error
 })
@@ -119,17 +169,17 @@ export const fetchSalaries = (dispatch) => {
                 throw errMess
             })
         .then(response => response.json())
-        .then(salaries=>dispatch(salariesAdd(salaries)))
+        .then(salaries => dispatch(salariesAdd(salaries)))
         .catch(error => dispatch(salariesFailed(error.message)))
 }
-export const isLoadingSalaries=()=>({
+export const isLoadingSalaries = () => ({
     type: ActionTypes.SALARIES_LOADING
 })
-export const salariesAdd=salaries=>({
+export const salariesAdd = salaries => ({
     type: ActionTypes.SALARIES_ADD,
-    payload:salaries
+    payload: salaries
 })
-export const salariesFailed= error=>({
+export const salariesFailed = error => ({
     type: ActionTypes.SALARIES_FAILED,
     payload: error
 })

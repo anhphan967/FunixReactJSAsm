@@ -1,10 +1,11 @@
 
 import dateFormat from "dateformat";
 import { useState } from "react";
-
+import {useDispatch} from 'react-redux'
 import { useParams, Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Col, Label, Input } from 'reactstrap'
 import Loading from "./Loading";
+import {fetchUpdate} from '../reducer/Action'
 
 function StaffSelect({ data, loading, errMess }) {
 
@@ -54,10 +55,12 @@ function RenderModal({ selectData, setModal, modal }) {
     image: "/asset/images/alberto.png",
 
   }
-
+  const dispatch= useDispatch()
   const [updateStaff, setUpdateStaff] = useState(initValues)
   const handelSubmit = (e) => {
     e.preventDefault()
+    console.log(updateStaff)
+    // dispatch(fetchUpdate(updateStaff,dispatch))
     setModal(false)
 
   }

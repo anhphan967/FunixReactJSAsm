@@ -13,12 +13,13 @@ import DepartDetail from './DepartDetail';
 // container component
 function MainComponent() {
     const dispatch = useDispatch()
+    
+    const datas = useSelector(state => state)
     useEffect(() => {
         fetchStaffs(dispatch)
         fetchDepartments(dispatch)
         fetchSalaries(dispatch)
     }, [])
-    const datas = useSelector(state => state)
 
 
     const HandelSubmit = (newStaff, e, setModal) => {

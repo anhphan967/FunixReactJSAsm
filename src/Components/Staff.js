@@ -4,6 +4,7 @@ import { Button, Input, Modal, ModalHeader, ModalBody, Label, FormGroup, Col, Fo
 import { useState, useRef } from 'react'
 import Loading from './Loading'
 import { useDispatch } from 'react-redux'
+import { fetchDelete } from '../reducer/Action'
 
 function Staff({ HandelSubmit, data, loading, errMess }) {
     const initValues = {
@@ -95,7 +96,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
             return 0;
         }).map((data) => {
             const id = data.id
-            const handelDelete = (id, dispatch) => { console.log(id) }
+            const handelDelete = (id) => { fetchDelete(id, dispatch) }
             return (
                 <div key={data.id} className='col-6 col-md-4 col-lg-2 mt-3 mb-3' >
                     <Link to={`/staff/${data.id}`}  >
@@ -105,7 +106,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
                             {data.name}
                         </Card>
                     </Link>
-                    <Button color="danger" onClick={() => handelDelete(id, dispatch)}>Delete</Button>
+                    <Button color="danger" onClick={() => handelDelete(id)}>Delete</Button>
                 </div>)
         })
 
