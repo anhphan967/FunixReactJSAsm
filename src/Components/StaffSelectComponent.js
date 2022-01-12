@@ -49,7 +49,7 @@ function RenderModal({ selectData, setModal, modal }) {
     doB: '',
     salaryScale: selectData[0].salaryScale,
     startDate: '',
-    department: selectData[0].departmentId,
+    departmentId: selectData[0].departmentId,
     annualLeave: selectData[0].annualLeave,
     overTime: selectData[0].overTime,
     image: "/asset/images/alberto.png",
@@ -60,8 +60,8 @@ function RenderModal({ selectData, setModal, modal }) {
   const handelSubmit = (e) => {
     e.preventDefault()
     console.log(updateStaff)
-    // dispatch(fetchUpdate(updateStaff,dispatch))
-    setModal(false)
+    fetchUpdate(updateStaff,dispatch)
+    setModal(!modal)
 
   }
   const handelChange = (e) => {
@@ -70,8 +70,8 @@ function RenderModal({ selectData, setModal, modal }) {
   }
   
   return (
-    <Modal isOpen={modal} toggle={false}>
-      <ModalHeader toggle={() => setModal(false)}>Chỉnh sửa thông tin </ModalHeader>
+    <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+      <ModalHeader toggle={() => setModal(!modal)}>Chỉnh sửa thông tin </ModalHeader>
       <ModalBody>
         <Form onSubmit={handelSubmit}>
           <FormGroup row>
@@ -104,8 +104,8 @@ function RenderModal({ selectData, setModal, modal }) {
           <FormGroup row>
             <Label md={4} htmlFor='deparment'>Phòng ban</Label>
             <Col md={8}>
-              <Input type="select" name="department"
-                onChange={handelChange} value={updateStaff.department}>
+              <Input type="select" name="departmentId"
+                onChange={handelChange} value={updateStaff.departmentId}>
                 <option value='Dept01' >Sale</option>
                 <option value='Dept02'>HR</option>
                 <option value='Dept03'>MARKETING</option>

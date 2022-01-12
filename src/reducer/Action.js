@@ -87,6 +87,7 @@ export const staffDelete = id => ({
 //update 
 export const fetchUpdate = (updateStaff,dispatch) => {
     console.log('fetchUpdate')
+    console.log(updateStaff)
     fetch(baseUrl + 'staffs',{
         method: 'PATCH',
         body:JSON.stringify(updateStaff),
@@ -108,13 +109,13 @@ export const fetchUpdate = (updateStaff,dispatch) => {
                 throw errMess
             })
         .then(response => response.json())
-        .then(staff => dispatch(staffsUpdate(staff)))
+        .then(staffs => dispatch(staffsUpdate(staffs)))
         .catch(error =>  {console.log('STAFF UPDATE:', error.message)
         alert('Chỉnh sửa nhân viên không thành công\nError: ' + error.message)})
 }
-export const staffsUpdate = staff => ({
+export const staffsUpdate = (staffs) => ({
     type: ActionTypes.STAFFS_UPDATE,
-    payload: staff
+    payload: staffs
 })
 
 // deparmemts
