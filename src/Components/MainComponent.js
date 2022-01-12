@@ -18,8 +18,7 @@ function MainComponent() {
    
     const datas = useSelector(state => state)
     useEffect(() => {
-        fetchStaffs(dispatch)
-             
+        fetchStaffs(dispatch)             
     }, [])
 
 

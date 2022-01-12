@@ -10,10 +10,8 @@ function Salaries({ data }) {
   const dispatch = useDispatch()
   useEffect(()=>{  fetchSalaries(dispatch)},[])
   const [sort, setSort] = useState(false)
+  // render Salaries
   const salaries = data.sort((a, b) => sort==='true' ? a.id - b.id : b.id - a.id).map((data) => {
-    // const basicSalary = 3000000;
-    // const overTimeSalary = 200000;
-    // const salary = (parseFloat(data.salaryScale) * basicSalary) + (parseFloat(data.overTime) * overTimeSalary);
     return (
       <Card key={data.id} className={'col-12 col-md-6 col-lg-4 mt-2 mb-2 '}>
         <h3>{data.name}</h3>
@@ -24,6 +22,7 @@ function Salaries({ data }) {
       </Card>
     )
   })
+
   return (
     <div className='container'>
       <div className='row'>
