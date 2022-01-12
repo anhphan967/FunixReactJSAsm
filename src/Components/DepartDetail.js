@@ -19,7 +19,8 @@ function DepartDetail({ data, loading, errMess }) {
                         <BreadcrumbItem active>{id.id}</BreadcrumbItem>
                     </Breadcrumb>
                 </div>
-                <div className='row'>
+                <div className='row shadow m-3'>
+                    
                     <Render value={value} />
                 </div>
             </div>
@@ -30,25 +31,21 @@ function DepartDetail({ data, loading, errMess }) {
 const Render = ({ value }) => {
 
     return (
-        <div>
+        <>
             {value.map((data, index) => {
                 return (
-                    <div key={index} className='col-6 col-md-4 col-lg-2 mt-3 mb-3'>
-                        <Link
-                            to={`/staff/${data.id}`}
-                        >
-                            <Card
-                                style={{ textAlign: 'center' }}>
-                                <img src={data.image} />
-                                {data.name}
-                            </Card>
-                        </Link>
-                    </div>
+                    <Link key={index} className='col-6 col-md-4 col-lg-2 mt-3 mb-3'
+                        to={`/staff/${data.id}`}
+                    >
+                        <Card
+                            style={{ textAlign: 'center' }}>
+                            <img src={data.image} />
+                            {data.name}
+                        </Card>
+                    </Link>
                 )
             })}
-        </div>
-
+        </>
     )
-
 }
 export default DepartDetail

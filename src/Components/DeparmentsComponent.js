@@ -1,14 +1,17 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import { CardBody, CardText, CardTitle } from 'reactstrap';
 
 // UI Componet
 const RenderDepartment = ({ data }) => {
   return data.map((data, index) => {
     return (
-      <Link key={index} to={`/departments/${data.id}`} >
-        <Card  className={'col-lg-3 col-md-5 col-xs-12  m-2 p-4'}>
-          <h3>{data.name}</h3>
-          <p>Số lượng nhân viên : {data.numberOfStaff}</p>
+      <Link key={index} to={`/departments/${data.id}`} className='col-12 col-md-6 col-lg-4 mt-2 mb-2'>
+        <Card  >
+          <CardTitle className='m-2'>{data.name}</CardTitle>
+          <CardBody>
+            <CardText>Số lượng nhân viên : {data.numberOfStaff}</CardText>
+          </CardBody>
         </Card>
       </Link>
     )
@@ -18,7 +21,7 @@ const RenderDepartment = ({ data }) => {
 function Departments({ data }) {
   return (
     <div className='container'>
-      <div className='row'>
+      <div className='row shadow m-3'>
         <RenderDepartment data={data} />
       </div>
     </div>

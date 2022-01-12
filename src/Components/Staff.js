@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Button, Input, Modal, ModalHeader, ModalBody, Label, FormGroup, Col, FormFeedback } from 'reactstrap'
 import { useState, useRef } from 'react'
 import Loading from './Loading'
+import { useDispatch } from 'react-redux'
+
 function Staff({ HandelSubmit, data, loading, errMess }) {
     const initValues = {
         id: 15,
@@ -25,6 +27,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
     const [modal, setModal] = useState(false)
     const [newStaff, setNewStaff] = useState(initValues)
     const [blur, setBlur] = useState(initTouches)
+    const dispatch= useDispatch()
     const searchRef = useRef()
     if (loading) {
         return (
@@ -91,18 +94,18 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
                 return val;
             return 0;
         }).map((data) => {
-
+            const id=data.id
+            const handelDelete=(id,dispatch)=>{console.log(id)}
             return (
                 <div key={data.id} className='col-6 col-md-4 col-lg-2 mt-3 mb-3' >
-                    <Link
-                        to={`/staff/${data.id}`}
-                    >
+                    <Link  to={`/staff/${data.id}`}  >
                         <Card
                             style={{ textAlign: 'center' }}>
                             <img src={data.image} />
                             {data.name}
-                        </Card>
+                        </Card>                       
                     </Link>
+                    <Button color="danger" onClick={()=>handelDelete(id,dispatch)}>Delete</Button>
                 </div>)
         })
 
@@ -137,7 +140,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
                     </div>
                 </div>
                 <hr />
-                <div className='row'>
+                <div className='row shadow m-3'>
                     {staffList}
                 </div>
                 <Modal isOpen={modal} toggle={() => setModal(!modal)}>
