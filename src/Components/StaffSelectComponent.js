@@ -42,6 +42,7 @@ function StaffSelect({ data, loading, errMess }) {
     )
   }
 }
+
 function RenderModal({ selectData, setModal, modal }) {
   const initValues = {
     id: selectData[0].id,

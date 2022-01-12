@@ -88,6 +88,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
 
         }
         const errors = validate(newStaff)
+        // render Staff
         const staffList = data.filter((val) => {
             if (search === "")
                 return val;
