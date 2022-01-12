@@ -5,15 +5,15 @@ import { CardBody, CardText, CardTitle } from 'reactstrap';
 // UI Componet
 const RenderDepartment = ({ data }) => {
   return data.map((data, index) => {
-    return (
-      <Link key={index} to={`/departments/${data.id}`} className='col-12 col-md-6 col-lg-4 mt-2 mb-2'>
-        <Card  >
-          <CardTitle className='m-2'>{data.name}</CardTitle>
-          <CardBody>
-            <CardText>Số lượng nhân viên : {data.numberOfStaff}</CardText>
-          </CardBody>
-        </Card>
-      </Link>
+    return (      
+          <Link key={index} to={`/departments/${data.id}`} className='col-12 col-md-6 col-lg-4 mt-2 mb-2'>
+            <Card  >
+              <CardTitle className='m-2'>{data.name}</CardTitle>
+              <CardBody>
+                <CardText>Số lượng nhân viên : {data.numberOfStaff}</CardText>
+              </CardBody>
+            </Card>
+          </Link>    
     )
   })
 }

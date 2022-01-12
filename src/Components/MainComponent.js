@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate,  useLocation } from 'react-router-dom'
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Departments from './DeparmentsComponent'
@@ -9,11 +9,13 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStaffs, fetchDepartments, fetchSalaries, fetchPlus } from '../reducer/Action'
 import DepartDetail from './DepartDetail';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 // container component
 function MainComponent() {
     const dispatch = useDispatch()
-    
+    const location=useLocation()
+   
     const datas = useSelector(state => state)
     useEffect(() => {
         fetchStaffs(dispatch)
@@ -27,56 +29,58 @@ function MainComponent() {
         e.preventDefault()
         if (newStaff.name == '' || newStaff.doB === '' || newStaff.starDate === '') {
             alert('Vui lòng điền thông tin')
-        } else {          
-           
+        } else {
+
             console.log(newStaff)
-            fetchPlus(newStaff,dispatch)
+            fetchPlus(newStaff, dispatch)
             setModal(false)
         }
     }
 
-
     return (
         <div >
             <Header />
-            <Routes>
-                <Route
-                    path="/"
-                    element={<Navigate replace to="/staffs" />} />
-                <Route
-                    path='/staffs'
-                    element={<Staff
-                        HandelSubmit={HandelSubmit}
-                        data={datas.staffs.staffs}
-                        loading={datas.staffs.isLoading}
-                        errMess={datas.staffs.errMess}
-                    />}
-
-                />
-                <Route
-                    path='/deparments'
-                    element={<Departments data={datas.departments.departments} />}
-                />
-                <Route
-                    path='/departments/:id'
-                    element={<DepartDetail
-                        data={datas.staffs.staffs}
-                        loading={datas.staffs.isLoading}
-                        errMess={datas.staffs.errMess}
-                    />}
-                />
-                <Route
-                    path='/salaries'
-                    element={<Salaries data={datas.salaries.salaries} />}
-                />
-                <Route
-                    path='/staff/:id'
-                    element={<StaffSelect 
-                        data={datas.staffs.staffs}
-                        loading={datas.staffs.isLoading}
-                        errMess={datas.staffs.errMess} />}
-                />
-            </Routes>
+            <TransitionGroup>
+                <CSSTransition key={location.key} classNames='page' timeout={300} >
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Navigate replace to="/staffs" />} />
+                        <Route
+                            path='/staffs'
+                            element={<Staff
+                                HandelSubmit={HandelSubmit}
+                                data={datas.staffs.staffs}
+                                loading={datas.staffs.isLoading}
+                                errMess={datas.staffs.errMess}
+                            />}
+                        />
+                        <Route
+                            path='/deparments'
+                            element={<Departments data={datas.departments.departments} />}
+                        />
+                        <Route
+                            path='/departments/:id'
+                            element={<DepartDetail
+                                data={datas.staffs.staffs}
+                                loading={datas.staffs.isLoading}
+                                errMess={datas.staffs.errMess}
+                            />}
+                        />
+                        <Route
+                            path='/salaries'
+                            element={<Salaries data={datas.salaries.salaries} />}
+                        />
+                        <Route
+                            path='/staff/:id'
+                            element={<StaffSelect
+                                data={datas.staffs.staffs}
+                                loading={datas.staffs.isLoading}
+                                errMess={datas.staffs.errMess} />}
+                        />
+                    </Routes>
+                </CSSTransition>
+            </TransitionGroup>
             <Footer />
         </div>
     )
