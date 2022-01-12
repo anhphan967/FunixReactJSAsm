@@ -5,9 +5,9 @@ import Departments from './DeparmentsComponent'
 import Salaries from './SalariesComponent'
 import Staff from './Staff';
 import StaffSelect from './StaffSelectComponent'
-import { useState, useEffect } from 'react'
+import {  useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchStaffs, fetchDepartments, fetchSalaries, fetchPlus } from '../reducer/Action'
+import {  fetchPlus,fetchStaffs } from '../reducer/Action'
 import DepartDetail from './DepartDetail';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -19,8 +19,7 @@ function MainComponent() {
     const datas = useSelector(state => state)
     useEffect(() => {
         fetchStaffs(dispatch)
-        fetchDepartments(dispatch)
-        fetchSalaries(dispatch)
+             
     }, [])
 
 

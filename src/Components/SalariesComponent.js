@@ -1,10 +1,14 @@
 import { Card,Form } from 'react-bootstrap'
 import { Breadcrumb,BreadcrumbItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import {useDispatch} from 'react-redux'
+import { fetchSalaries } from '../reducer/Action'
 
 
 function Salaries({ data }) {
+  const dispatch = useDispatch()
+  useEffect(()=>{  fetchSalaries(dispatch)},[])
   const [sort, setSort] = useState(false)
   const salaries = data.sort((a, b) => sort==='true' ? a.id - b.id : b.id - a.id).map((data) => {
     // const basicSalary = 3000000;
