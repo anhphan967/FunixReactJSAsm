@@ -33,7 +33,40 @@ export const staffsFailed= error=>({
     type: ActionTypes.STAFFS_FAILED,
     payload: error
 })
-
+//STAFFS_PLUS
+export const fetchPlus=(newStaff,dispatch)=>{ 
+    console.log('fetchPlus')
+    fetch(baseUrl + 'staffs', {
+        method:'Post',
+        body:JSON.stringify(newStaff),
+        headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "same-origin"
+    })
+        .then(response => {
+            if (response.ok) { return response }
+            else {
+                const error = new Error('Error:' + response.status + ':' + response.statusText)
+                error.response = response
+                throw error
+            }
+        },
+            error => {
+                const errMess = new Error(error.message)
+                throw errMess
+            })
+        .then(response => response.json())
+        .then(staff=>dispatch(staffPlus(staff)))
+        .catch(error => {
+            console.log('STAFF PLUS:', error.message);
+            alert('Thêm mới nhân viên không thành công\nError: ' + error.message);
+        })
+}
+    export const staffPlus=staff=>({
+        type: ActionTypes.STAFFS_PLUS,
+        payload: staff
+    })
 // deparmemts
 export const fetchDepartments = (dispatch) => {
     dispatch(isLoadingDepartments(true))

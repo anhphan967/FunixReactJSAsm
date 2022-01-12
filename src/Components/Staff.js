@@ -7,15 +7,15 @@ import { useDispatch } from 'react-redux'
 
 function Staff({ HandelSubmit, data, loading, errMess }) {
     const initValues = {
-        id: 15,
+        id: '',
         name: "",
         doB: "",
         salaryScale: 1,
         startDate: "",
-        department: "Sale",
+        departmentId: "",
         annualLeave: 0,
         overTime: 0,
-        image: "/assets/images/alberto.png",
+        image: "/asset/images/alberto.png",
 
     }
     const initTouches = {
@@ -27,7 +27,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
     const [modal, setModal] = useState(false)
     const [newStaff, setNewStaff] = useState(initValues)
     const [blur, setBlur] = useState(initTouches)
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
     const searchRef = useRef()
     if (loading) {
         return (
@@ -47,7 +47,7 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
             </div>
         );
     } else {
-            console.log(data)
+        
         const handelSearch = (e) => {
             setSearch(searchRef.current.value)
             e.preventDefault()
@@ -94,18 +94,18 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
                 return val;
             return 0;
         }).map((data) => {
-            const id=data.id
-            const handelDelete=(id,dispatch)=>{console.log(id)}
+            const id = data.id
+            const handelDelete = (id, dispatch) => { console.log(id) }
             return (
                 <div key={data.id} className='col-6 col-md-4 col-lg-2 mt-3 mb-3' >
-                    <Link  to={`/staff/${data.id}`}  >
+                    <Link to={`/staff/${data.id}`}  >
                         <Card
                             style={{ textAlign: 'center' }}>
                             <img src={data.image} />
                             {data.name}
-                        </Card>                       
+                        </Card>
                     </Link>
-                    <Button color="danger" onClick={()=>handelDelete(id,dispatch)}>Delete</Button>
+                    <Button color="danger" onClick={() => handelDelete(id, dispatch)}>Delete</Button>
                 </div>)
         })
 
@@ -186,12 +186,13 @@ function Staff({ HandelSubmit, data, loading, errMess }) {
                             <FormGroup row>
                                 <Label md={4} htmlFor='deparment'>Phòng ban</Label>
                                 <Col md={8}>
-                                    <Input type="select" name="department"
-                                        onChange={handelChange} value={newStaff.department}>
-                                        <option value='Sale' >Sale</option>
-                                        <option value='HR '>HR</option>
-                                        <option value='IT '>IT</option>
-                                        <option value='Finance '>Finance</option>
+                                    <Input type="select" name="departmentId"
+                                        onChange={handelChange} value={newStaff.departmentId}>
+                                        <option value='Dept01' >Sale</option>
+                                        <option value='Dept02'>HR</option>
+                                        <option value='Dept03'>MARKETING</option>
+                                        <option value='Dept04'>IT</option>
+                                        <option value='Dept05'>Finance</option>
                                     </Input>
                                 </Col>
                             </FormGroup>

@@ -7,8 +7,9 @@ import Staff from './Staff';
 import StaffSelect from './StaffSelectComponent'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchStaffs, fetchDepartments, fetchSalaries } from '../reducer/Action'
+import { fetchStaffs, fetchDepartments, fetchSalaries, fetchPlus } from '../reducer/Action'
 import DepartDetail from './DepartDetail';
+
 // container component
 function MainComponent() {
     const dispatch = useDispatch()
@@ -25,12 +26,10 @@ function MainComponent() {
         e.preventDefault()
         if (newStaff.name == '' || newStaff.doB === '' || newStaff.starDate === '') {
             alert('Vui lòng điền thông tin')
-        } else {
-            let oldid = newStaff.id
-            let newid = oldid + 1;
-            newStaff.id = newid
+        } else {          
+           
             console.log(newStaff)
-            // setData(data =>[...data, newStaff])
+            fetchPlus(newStaff,dispatch)
             setModal(false)
         }
     }
