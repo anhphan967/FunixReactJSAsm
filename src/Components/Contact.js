@@ -28,7 +28,7 @@ function Contact({prop}) {
 
     const [formValues, setFormValues] = useState(initValues)
     const [blur, setBlur] = useState(initTouches)
-
+    const [feedback, setFeedback]=useState({})
     const HandelChange = (e) => {
 
         const { name, value, checked } = e.target
@@ -43,7 +43,20 @@ function Contact({prop}) {
     }
 
     const HandelSubmit = (e) => {
-        alert('Feedback:' + JSON.stringify(formValues))
+        if( formValues !== initValues ){
+            if( errors.firstName==''&& errors.lastName==''&& errors.tel==''&& errors.email==''){
+                alert('Feedback:' + JSON.stringify(formValues))
+                setFeedback(JSON.stringify(formValues))
+                setBlur(initTouches)
+                setFormValues(initValues)
+            }
+                else {
+                    alert('Please check again  your Feedback')
+                }
+        }else{
+            alert('Please fill all your Feedback')
+        }
+      
         e.preventDefault()
 
     }
