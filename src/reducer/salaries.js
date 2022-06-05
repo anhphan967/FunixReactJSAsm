@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-export const salaries = (state = {
+export const salaries = (state= {
     isLoading: true, errMess: null, salaries: []
 }, action) => {
     switch (action.type) {
